@@ -1,19 +1,14 @@
-(ns bob)
+(ns bob
+  (:require [clojure.string :as ss]))
 
-(defn ends-with? [s substr]
-  (= substr
-     (subs s
-           (- (count s) (count substr)))))
+(defn shout? [s]
+  (and (re-find #"[a-zA-Z]" s) (= s (.toUpperCase s))))
 
-(defn contain-letter? [s]
-  (> (count (filter (fn [c] (Character/isLetter c)) (seq s))) 0))
-
-(defn upper? [s]
-  (and (contain-letter? s) (= s (.toUpperCase s))))
+(defn question? [s] (ss/ends-with? s "?"))
 
 (defn response-for [s]
   (cond
     (clojure.string/blank? s) "Fine. Be that way!"
-    (upper? s) (if (ends-with? s "?") "Calm down, I know what I'm doing!"  "Whoa, chill out!")
-    (ends-with? s "?") "Sure."
+    (shout? s) (if (question? s) "Calm down, I know what I'm doing!"  "Whoa, chill out!")
+    (question? s) "Sure."
     :else "Whatever."))
