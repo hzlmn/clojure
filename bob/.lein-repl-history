@@ -1,0 +1,4 @@
+clojure.string/blank
+clojure.string/blank?
+clear
+exit
