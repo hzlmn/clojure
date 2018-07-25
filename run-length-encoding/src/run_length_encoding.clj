@@ -3,7 +3,9 @@
 (defn run-length-encode
   "encodes a string with run-length-encoding"
   [plain-text]
-  (complement contains? plain-text "A"))
+  (->> (partition-by identity plain-text)
+       (mapcat (juxt count first))
+       (apply str)))
 
 (defn run-length-decode
   "decodes a run-length-encoded string"

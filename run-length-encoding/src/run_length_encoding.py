@@ -13,6 +13,4 @@ def run_length_encode(string):
         for key, count in counter.items()
     ]
 
-    return "".join(parts)
-        
-    
+    return "".join(parts)     
