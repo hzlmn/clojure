@@ -6,7 +6,3 @@
   (->> (partition-by identity plain-text)
        (mapcat (juxt count first))
        (apply str)))
-
-(defn run-length-decode
-  "decodes a run-length-encoded string"
-  [cipher-text])
